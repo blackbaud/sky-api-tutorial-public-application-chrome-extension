@@ -1,0 +1,35 @@
+{
+  "name": "Blackbaud SKY API Example",
+  "description": "An example of a using Blackbaud SKY API",
+  "version": "0.1",
+  "action": {
+    "default_icon": "bbicon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "service_worker.js", 
+    "type": "module"
+  },
+  "permissions": ["scripting", "identity", "storage"],
+  "host_permissions": [
+    "https://mail.google.com/"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["bbicon.png"],
+      "matches": ["https://mail.google.com/*"]
+    },
+    {
+      "resources": ["pageWorld.js"],
+      "matches": ["https://mail.google.com/*"]
+    }
+  ],
+  "manifest_version": 3
+}
