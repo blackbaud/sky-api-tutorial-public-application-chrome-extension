@@ -9,7 +9,7 @@ import { getState } from "./scripts/state.js";
   // Update the subscription key with the SKY API Subscription Key
   var subscriptionKey = '<YOUR_SKY_API_SUBSCRIPTION_KEY>';
   
-  
+
   var authorizeUrl = "https://app.blackbaud.com/oauth/authorize";
   var tokenUrl = "https://oauth2.sky.blackbaud.com/token";
 
@@ -128,7 +128,7 @@ import { getState } from "./scripts/state.js";
 
   /**
    * Makes a request to SKY API Constituent Search endpoint:
-   *  - https://developer.sky.blackbaud.com/docs/services/56b76470069a0509c8f1c5b3/operations/56b76471069a050520297727
+   *  - https://developer.sky.blackbaud.com/docs/services/56b76470069a0509c8f1c5b3/operations/SearchConstituent
    * The search text parameter's value is set to an email address.
    */
   function getConstituentByEmailAddress(emailAddress) {
