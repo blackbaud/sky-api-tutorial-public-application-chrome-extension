@@ -30,23 +30,17 @@ $  git clone https://github.com/blackbaud/sky-api-tutorial-public-application-ch
 
 ### Step 2 — Update files
 - Update `service-worker.js` variables.
-    <table>
-        <tr>
-            <td>`subscriptionKey`</td>
-            <td>Your [SKY API (Blackbaud) developer subscription key](https://developer.sky.blackbaud.com/developer) (primary or secondary)</td>
-        </tr>
-        <tr>
-            <td>`clientId`</td>
-            <td>Your SKY API registered application's [Application ID](https://developerapp.sky.blackbaud.com/applications)</td>
-        </tr>
-    </table>
+
+| Variable | Update |
+| --- | --- |
+| `subscriptionKey` | Your [SKY API (Blackbaud) developer subscription key](https://developer.sky.blackbaud.com/developer) (primary or secondary) |
+| `clientId` | Your SKY API registered application's [Application ID](https://developerapp.sky.blackbaud.com/applications) |
+
 - Update `scripts/content.js` variable.
-    <table>    
-        <tr>
-            <td>`inboxSdkAppId`</td>
-            <td>Your Google Inbox SDK App ID ([free registration](https://www.inboxsdk.com/register)).</td>
-        </tr>
-    </table>
+
+| Variable | Update |
+| --- | --- |
+| `inboxSdkAppId` | Your Google Inbox SDK App ID ([free registration](https://www.inboxsdk.com/register)). |
 
 ### Step 3 — Install the extension
 - From the root folder, run `npm install` to install the needed packages.
