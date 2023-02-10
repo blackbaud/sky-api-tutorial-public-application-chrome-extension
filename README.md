@@ -20,8 +20,8 @@ This tutorial demonstrates the interaction of a client application (Google Chrom
     - You can view your subscription keys on your [Blackbaud Developer Profile](https://developer.blackbaud.com/subscriptions/).
 - **A Blackbaud Developer Application ID**
     - [Register your application](https://developer.blackbaud.com/apps/) in order to obtain the **Application ID** (client ID).
-    - the application needs RE NXT Read access
-    - the application needs to be connected to the environment (unless using the SKY Developer cohort)
+    - At a minimum, set the application's [Scopes](https://developer.blackbaud.com/skyapi/docs/applications/scopes) to `Limited data access` with the `Raiser's Edge NXT - Read` scope.
+    - [Connect the application](https://developer.blackbaud.com/skyapi/docs/applications#connect-applications-to-environments) to your Blackbaud environment.
 
 ### Step 1 — Clone the files
 - Open Terminal/Command Prompt and type:
