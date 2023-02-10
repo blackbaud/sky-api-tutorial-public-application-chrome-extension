@@ -15,11 +15,11 @@ This tutorial demonstrates the interaction of a client application (Google Chrom
 ### Sky API Requirements:
 
 - **A Blackbaud Developer Subscription Key**
-    - If you have not already done so, be sure to complete the [Getting started guide](https://apidocs.sky.blackbaud.com/docs/getting-started/). This will guide you through the process of registering for a Blackbaud developer account and requesting a subscription to an API product.
+    - If you have not already done so, be sure to complete the [Getting started guide](https://developer.blackbaud.com/skyapi/docs/getting-started). This will guide you through the process of registering for a Blackbaud developer account and requesting a subscription to an API product.
     - Once approved, your subscription will contain a **Primary Key** and a **Secondary Key**.  You can use either key as the subscription key value for the `bb-api-subscription-key` request header when making calls to the API.
-    - You can view your subscription keys on your [Blackbaud Developer Profile](https://developer.sky.blackbaud.com/developer).
+    - You can view your subscription keys on your [Blackbaud Developer Profile](https://developer.blackbaud.com/subscriptions/).
 - **A Blackbaud Developer Application ID**
-    - [Register your application](https://developerapp.sky.blackbaud.com/applications) in order to obtain the **Application ID** (client ID).
+    - [Register your application](https://developer.blackbaud.com/apps/) in order to obtain the **Application ID** (client ID).
 
 
 ### Step 1 — Clone the files
@@ -33,8 +33,8 @@ $  git clone https://github.com/blackbaud/sky-api-tutorial-public-application-ch
 
 | Variable | Update |
 | --- | --- |
-| `subscriptionKey` | Your [SKY API (Blackbaud) developer subscription key](https://developer.sky.blackbaud.com/developer) (primary or secondary) |
-| `clientId` | Your SKY API registered application's [Application ID](https://developerapp.sky.blackbaud.com/applications) |
+| `subscriptionKey` | Your [SKY API (Blackbaud) developer subscription key](https://developer.blackbaud.com/subscriptions/) (primary or secondary) |
+| `clientId` | Your SKY API registered application's [Application ID](https://developer.blackbaud.com/apps/) |
 
 - Update `scripts/content.js` variable.
 
@@ -49,7 +49,7 @@ $  git clone https://github.com/blackbaud/sky-api-tutorial-public-application-ch
 - Visit [chrome://extensions](chrome://extensions).
 - Make sure **Developer Mode** is checked in the top-right corner of the page.
 - Click **Load unpacked extension** and choose the `extension` directory `dist` folder.
-- **IMPORTANT:** Make note of the `ID` field beneath the new extension's title on your list of installed extensions (you'll need the Extension ID for the next step).
+    - **IMPORTANT:** Make note of the `ID` field beneath the new extension's title on your list of installed extensions (you'll need the Extension ID for the next step).
 - Add a Redirect URI to your [registered application](https://developer.blackbaud.com/apps/)'s Redirect URIs, following this format:<br>
   
 - The redirect URI follows the pattern `https://<extension-id>.chromiumapp.org/oauth2`.
