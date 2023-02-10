@@ -1,7 +1,7 @@
 import { getPkce } from "./scripts/pkce.js";
 import { getState } from "./scripts/state.js";
 
-(function () {
+(() => {
   "use strict";
 
   // Update the client ID with the SKY Application ID
@@ -9,7 +9,7 @@ import { getState } from "./scripts/state.js";
   // Update the subscription key with the SKY API Subscription Key
   var subscriptionKey = '<YOUR_SKY_API_SUBSCRIPTION_KEY>';
   
-
+  
   var authorizeUrl = "https://app.blackbaud.com/oauth/authorize";
   var tokenUrl = "https://oauth2.sky.blackbaud.com/token";
 
@@ -18,7 +18,7 @@ import { getState } from "./scripts/state.js";
    * Otherwise, starts the authorization process to retrieve a new access token.
    */
   function checkAccessToken() {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       getStorageAuth()
         .then((auth) => {
           if (!!auth.access_token) {
@@ -32,7 +32,7 @@ import { getState } from "./scripts/state.js";
   }
 
   function getStorageAuth() {
-    return new Promise(function (resolve) {
+    return new Promise((resolve) => {
       chrome.storage.local.get(["authorization"]).then((result) => {
         if (!!result.authorization) {
           resolve(JSON.parse(result.authorization));
@@ -47,19 +47,18 @@ import { getState } from "./scripts/state.js";
    * Starts the authorization flow and retrieves an access token upon success.
    */
   function getAccessToken() {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       var url;
       const pkce = getPkce();
       const state = getState();
 
       url =
-        `${authorizeUrl}?client_id=${clientId}` +
-        "&response_type=code" +
-        "&code_challenge_method=S256" +
-        `&code_challenge=` +
-        pkce.challenge +
-        `&redirect_uri=${chrome.identity.getRedirectURL("oauth2")}` +
-        `&state=${state}`;
+        `${authorizeUrl}?client_id=${clientId}&response_type=code&code_challenge_method=S256` +
+        `&code_challenge=${
+          pkce.challenge
+        }&redirect_uri=${chrome.identity.getRedirectURL(
+          "oauth2"
+        )}&state=${state}`;
 
       // Starts an authorization flow at the specified URL.
       // - https://developer.chrome.com/apps/identity#method-launchWebAuthFlow
@@ -102,20 +101,13 @@ import { getState } from "./scripts/state.js";
 
           fetch(tokenUrl, {
             method: "post",
-            body: new URLSearchParams(
-              {
-                client_id: clientId,
-                grant_type: "authorization_code",
-                redirect_uri: chrome.identity.getRedirectURL("oauth2"),
-                code: code,
-                code_verifier: pkce.verifier,
-              },
-              {
-                headers: {
-                  origin: "test",
-                },
-              }
-            ),
+            body: new URLSearchParams({
+              client_id: clientId,
+              grant_type: "authorization_code",
+              redirect_uri: chrome.identity.getRedirectURL("oauth2"),
+              code: code,
+              code_verifier: pkce.verifier,
+            }),
           })
             .then((response) => response.json())
             .then((body) => {
@@ -140,7 +132,7 @@ import { getState } from "./scripts/state.js";
    * The search text parameter's value is set to an email address.
    */
   function getConstituentByEmailAddress(emailAddress) {
-    return getStorageAuth().then(function (auth) {
+    return getStorageAuth().then((auth) => {
       return fetch(
         "https://api.sky.blackbaud.com/constituent/v1/constituents/search?" +
           new URLSearchParams({
@@ -165,7 +157,7 @@ import { getState } from "./scripts/state.js";
     if (!str) {
       return params;
     }
-    str.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (str, key, value) {
+    str.replace(/[?&]+([^=&]+)=([^&]*)/gi, (str, key, value) => {
       params[key] = value;
     });
     return params;
@@ -177,7 +169,7 @@ import { getState } from "./scripts/state.js";
   function messageHandler(request, sender, callback) {
     var emailAddress, parseError;
 
-    parseError = function (reason) {
+    parseError = (reason) => {
       if (typeof reason === "string") {
         return callback({
           error: reason,
@@ -186,13 +178,13 @@ import { getState } from "./scripts/state.js";
       console.log("MESSAGE ERROR:", reason);
       try {
         if (!!reason.error) {
-          reason = `${reason.error}: ${reason.error_description}`
+          reason = `${reason.error}: ${reason.error_description}`;
         } else {
-          reason = reason.message ||
+          reason =
+            reason.message ||
             reason.responseJSON.message ||
             JSON.parse(reason.responseText);
         }
-
       } catch (error) {
         reason =
           "Something bad happened. Please reload the page and try again.";
@@ -216,14 +208,13 @@ import { getState } from "./scripts/state.js";
       case "apiSearch":
         emailAddress = request.message.emailAddress;
         checkAccessToken()
-          .then(function () {
+          .then(() => {
             getConstituentByEmailAddress(emailAddress)
-              .then(function (data) {
-
+              .then((data) => {
                 // The token has expired. Attempt to refresh.
-                if (data.responseText && data.responseText.statusCode === 401) {
+                if (data?.statusCode === 401) {
                   getAccessToken()
-                    .then(function () {
+                    .then(() => {
                       getConstituentByEmailAddress(emailAddress)
                         .then(callback)
                         .catch(parseError);
