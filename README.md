@@ -51,12 +51,11 @@ $  git clone https://github.com/blackbaud/sky-api-tutorial-public-application-ch
 - Click **Load unpacked extension** and choose the `extension` directory `dist` folder.
 - **IMPORTANT:** Make note of the `ID` field beneath the new extension's title on your list of installed extensions (you'll need the Extension ID for the next step).
 - Add a Redirect URI to your [registered application](https://developer.blackbaud.com/apps/)'s Redirect URIs, following this format:<br>
-  <ul>
-    <li>The redirect URI follows the pattern `https://<extension-id>.chromiumapp.org/oauth2`.</li>
-    <li>The `<extension-id>` represents the unique ID that is automatically generated when the Chrome extension is uploaded to Google's servers.</li>
-    <li>When developing locally, Chrome generates a random ID automatically when you load it as an "unpacked extension".</li>
-    <li>The ID can be found by visiting [chrome://extensions](chrome://extensions) in your Chrome browser; look for the `ID` label beneath the extension's listing.</li>
-  </ul>
+  
+- The redirect URI follows the pattern `https://<extension-id>.chromiumapp.org/oauth2`.
+- The `<extension-id>` represents the unique ID that is automatically generated when the Chrome extension is uploaded to Google's servers.
+- When developing locally, Chrome generates a random ID automatically when you load it as an "unpacked extension".
+- The ID can be found by visiting [chrome://extensions](chrome://extensions) in your Chrome browser; look for the `ID` label beneath the extension's listing.
 
 ### Step 4 — Test the extension
 - Visit [Gmail](http://mail.google.com/) using Google Chrome.
