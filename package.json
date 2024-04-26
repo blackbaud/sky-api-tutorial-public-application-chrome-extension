@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/blackbaud/sky-api-tutorial-public-application-chrome-extension",
   "dependencies": {
-    "@inboxsdk/core": "0.2.27",
-    "crypto-js": "4.1.1"
+    "@inboxsdk/core": "^0.2.27",
+    "crypto-js": "^4.1.1"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^11.0.0",
